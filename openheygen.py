@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=False)
     tts.tts_to_file(text=args.text,
-                    file_path=args.file_path,
+                    file_path=args.output_path,
                     speaker_wav=args.speaker_wav,
                     language=args.language)
 
