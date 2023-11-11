@@ -1,4 +1,4 @@
-conda create -n  python=3.8
+conda create -n python=3.9
 conda activate video-retalking
 
 conda install ffmpeg
