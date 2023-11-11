@@ -50,10 +50,10 @@ def main(args):
             backbone_pth = os.path.join(cfg.output, "backbone.pth")
             backbone.load_state_dict(torch.load(backbone_pth, map_location=torch.device(local_rank)))
             if rank == 0:
-                logging.info("backbone resume successfully")
+                logging.info("backbone resume successfully!")
         except (FileNotFoundError, KeyError, IndexError, RuntimeError):
             if rank == 0:
-                logging.info("resume fail, backbone init successfully")
+                logging.info("resume fail, backbone init successfully!")
 
     backbone = torch.nn.parallel.DistributedDataParallel(
         module=backbone, broadcast_buffers=False, device_ids=[local_rank])

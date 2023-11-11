@@ -25,7 +25,7 @@ hparams = HParams(
 	
 	# Use LWS (https://github.com/Jonathan-LeRoux/lws) for STFT and phase reconstruction
 	# It"s preferred to set True to use with https://github.com/r9y9/wavenet_vocoder
-	# Does not work if n_ffit is not multiple of hop_size
+	# Does not work if n_ffit is not multiple of hop_size!!
 	use_lws=False,
 	
 	n_fft=800,  # Extra window size is filled with 0 paddings to match this parameter
@@ -56,7 +56,7 @@ hparams = HParams(
 	min_level_db=-100,
 	ref_level_db=20,
 	fmin=55,
-	# Set this to 55 if your speaker is male if female, 95 should help taking off noise. (To 
+	# Set this to 55 if your speaker is male! if female, 95 should help taking off noise. (To 
 	# test depending on dataset. Pitch info: male~[65, 260], female~[100, 525])
 	fmax=7600,  # To be increased/reduced depending on data.
 
@@ -94,7 +94,7 @@ hparamsdebug = HParams(
 	
 	# Use LWS (https://github.com/Jonathan-LeRoux/lws) for STFT and phase reconstruction
 	# It"s preferred to set True to use with https://github.com/r9y9/wavenet_vocoder
-	# Does not work if n_ffit is not multiple of hop_size
+	# Does not work if n_ffit is not multiple of hop_size!!
 	use_lws=False,
 	
 	n_fft=800,  # Extra window size is filled with 0 paddings to match this parameter
@@ -125,7 +125,7 @@ hparamsdebug = HParams(
 	min_level_db=-100,
 	ref_level_db=20,
 	fmin=55,
-	# Set this to 55 if your speaker is male if female, 95 should help taking off noise. (To 
+	# Set this to 55 if your speaker is male! if female, 95 should help taking off noise. (To 
 	# test depending on dataset. Pitch info: male~[65, 260], female~[100, 525])
 	fmax=7600,  # To be increased/reduced depending on data.
 )
@@ -133,5 +133,5 @@ hparamsdebug = HParams(
 
 def hparams_debug_string():
 	values = hparams.values()
-	hp = ["  %s: %s" % (name, values[name]) for name in sorted(values) if name = "sentences"]
+	hp = ["  %s: %s" % (name, values[name]) for name in sorted(values) if name != "sentences"]
 	return "Hyperparameters:\n" + "\n".join(hp)

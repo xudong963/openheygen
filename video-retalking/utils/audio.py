@@ -61,7 +61,7 @@ def _stft(y):
         return librosa.stft(y=y, n_fft=hp.n_fft, hop_length=get_hop_size(), win_length=hp.win_size)
 
 ##########################################################
-#Those are only correct when using lws (This was messing with Wavenet quality for a long time)
+#Those are only correct when using lws!!! (This was messing with Wavenet quality for a long time!)
 def num_frames(length, fsize, fshift):
     """Compute number of time frames of spectrogram
     """

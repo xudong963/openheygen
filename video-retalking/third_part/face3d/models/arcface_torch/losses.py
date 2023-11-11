@@ -18,7 +18,7 @@ class CosFace(nn.Module):
         self.m = m
 
     def forward(self, cosine, label):
-        index = torch.where(label = -1)[0]
+        index = torch.where(label != -1)[0]
         m_hot = torch.zeros(index.size()[0], cosine.size()[1], device=cosine.device)
         m_hot.scatter_(1, label[index, None], self.m)
         cosine[index] -= m_hot
@@ -33,7 +33,7 @@ class ArcFace(nn.Module):
         self.m = m
 
     def forward(self, cosine: torch.Tensor, label):
-        index = torch.where(label = -1)[0]
+        index = torch.where(label != -1)[0]
         m_hot = torch.zeros(index.size()[0], cosine.size()[1], device=cosine.device)
         m_hot.scatter_(1, label[index, None], self.m)
         cosine.acos_()

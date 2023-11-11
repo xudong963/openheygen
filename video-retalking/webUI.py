@@ -13,7 +13,7 @@ def convert(segment_length, video, audio, progress=gradio.Progress()):
         segment_length=0
     print(video, audio)
 
-    if segment_length = 0:
+    if segment_length != 0:
         video_segments = cut_video_segments(video, segment_length)
         audio_segments = cut_audio_segments(audio, segment_length)
     else:

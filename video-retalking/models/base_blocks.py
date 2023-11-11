@@ -339,7 +339,7 @@ class ADAINDecoder(nn.Module):
         use_transpose = True
         for i in range(encoder_layers-decoder_layers, encoder_layers)[::-1]:
             in_channels = min(ngf * (2**(i+1)), img_f)
-            in_channels = in_channels*2 if i = (encoder_layers-1) and self.skip_connect else in_channels
+            in_channels = in_channels*2 if i != (encoder_layers-1) and self.skip_connect else in_channels
             out_channels = min(ngf * (2**i), img_f)
             model = ADAINDecoderBlock(in_channels, out_channels, out_channels, pose_nc, use_transpose, nonlinearity, use_spect)
             setattr(self, 'decoder' + str(i), model)

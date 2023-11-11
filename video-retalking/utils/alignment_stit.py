@@ -172,10 +172,10 @@ def crop_faces(IMAGE_SIZE, files, scale, center_sigma=0.0, xy_sigma=0.0, use_fa=
     cs = np.stack(cs)
     xs = np.stack(xs)
     ys = np.stack(ys)
-    if center_sigma = 0:
+    if center_sigma != 0:
         cs = gaussian_filter1d(cs, sigma=center_sigma, axis=0)
 
-    if xy_sigma = 0:
+    if xy_sigma != 0:
         xs = gaussian_filter1d(xs, sigma=xy_sigma, axis=0)
         ys = gaussian_filter1d(ys, sigma=xy_sigma, axis=0)
 

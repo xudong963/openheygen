@@ -1,4 +1,4 @@
-#/usr/bin/python
+#!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
 import torch
@@ -26,7 +26,7 @@ class BasicBlock(nn.Module):
         self.bn2 = nn.BatchNorm2d(out_chan)
         self.relu = nn.ReLU(inplace=True)
         self.downsample = None
-        if in_chan = out_chan or stride = 1:
+        if in_chan != out_chan or stride != 1:
             self.downsample = nn.Sequential(
                 nn.Conv2d(in_chan, out_chan,
                           kernel_size=1, stride=stride, bias=False),

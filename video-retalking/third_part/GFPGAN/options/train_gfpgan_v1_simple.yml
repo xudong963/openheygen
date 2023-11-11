@@ -95,13 +95,13 @@ path:
 train:
   optim_g:
     type: Adam
-    lr: float 2e-3
+    lr: !!float 2e-3
   optim_d:
     type: Adam
-    lr: float 2e-3
+    lr: !!float 2e-3
   optim_component:
     type: Adam
-    lr: float 2e-3
+    lr: !!float 2e-3
 
   scheduler:
     type: MultiStepLR
@@ -115,7 +115,7 @@ train:
   # pixel loss
   pixel_opt:
     type: L1Loss
-    loss_weight: float 1e-1
+    loss_weight: !!float 1e-1
     reduction: mean
   # L1 loss used in pyramid loss, component style loss and identity loss
   L1_opt:
@@ -138,7 +138,7 @@ train:
       'conv5_4': 1
     vgg_type: vgg19
     use_input_norm: true
-    perceptual_weight: float 1
+    perceptual_weight: !!float 1
     style_weight: 50
     range_norm: true
     criterion: l1
@@ -146,7 +146,7 @@ train:
   gan_opt:
     type: GANLoss
     gan_type: wgan_softplus
-    loss_weight: float 1e-1
+    loss_weight: !!float 1e-1
   # r1 regularization for discriminator
   r1_reg_weight: 10
 
@@ -156,7 +156,7 @@ train:
 
 # validation settings
 val:
-  val_freq: float 5e3
+  val_freq: !!float 5e3
   save_img: true
 
   metrics:
@@ -168,7 +168,7 @@ val:
 # logging settings
 logger:
   print_freq: 100
-  save_checkpoint_freq: float 5e3
+  save_checkpoint_freq: !!float 5e3
   use_tb_logger: true
   wandb:
     project: ~

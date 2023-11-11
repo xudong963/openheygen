@@ -211,7 +211,7 @@ def load_bin(path, image_size):
     for idx in range(len(issame_list) * 2):
         _bin = bins[idx]
         img = mx.image.imdecode(_bin)
-        if img.shape[1] = image_size[0]:
+        if img.shape[1] != image_size[0]:
             img = mx.image.resize_short(img, image_size[0])
         img = nd.transpose(img, axes=(2, 0, 1))
         for flip in [0, 1]:

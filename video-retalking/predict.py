@@ -286,7 +286,7 @@ class Predictor(BasePredictor):
         mel = audio.melspectrogram(wav)
         if np.isnan(mel.reshape(-1)).sum() > 0:
             raise ValueError(
-                "Mel contains nan Using a TTS voice? Add a small epsilon noise to the wav file and try again"
+                "Mel contains nan! Using a TTS voice? Add a small epsilon noise to the wav file and try again"
             )
 
         mel_step_size, mel_idx_multiplier, i, mel_chunks = 16, 80.0 / fps, 0, []
@@ -322,7 +322,7 @@ class Predictor(BasePredictor):
             (frame_w, frame_h),
         )
 
-        if args.up_face = "original":
+        if args.up_face != "original":
             instance = GANimationModel()
             instance.initialize()
             instance.setup()

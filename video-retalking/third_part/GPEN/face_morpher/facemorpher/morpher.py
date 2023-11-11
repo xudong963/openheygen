@@ -99,7 +99,7 @@ def morph(src_img, src_points, dest_img, dest_points,
   plt.plot_one(src_img)
   video.write(src_img, 1)
 
-  # Produce morph frames
+  # Produce morph frames!
   for percent in np.linspace(1, 0, num=num_frames):
     points = locator.weighted_average_points(src_points, dest_points, percent)
     src_face = warper.warp_image(src_img, src_points, points, size)

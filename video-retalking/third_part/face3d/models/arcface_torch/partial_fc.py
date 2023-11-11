@@ -66,20 +66,20 @@ class PartialFC(Module):
             try:
                 self.weight: torch.Tensor = torch.load(self.weight_name)
                 self.weight_mom: torch.Tensor = torch.load(self.weight_mom_name)
-                if self.weight.shape[0] = self.num_local or self.weight_mom.shape[0] = self.num_local:
+                if self.weight.shape[0] != self.num_local or self.weight_mom.shape[0] != self.num_local:
                     raise IndexError
-                logging.info("softmax weight resume successfully")
-                logging.info("softmax weight mom resume successfully")
+                logging.info("softmax weight resume successfully!")
+                logging.info("softmax weight mom resume successfully!")
             except (FileNotFoundError, KeyError, IndexError):
                 self.weight = torch.normal(0, 0.01, (self.num_local, self.embedding_size), device=self.device)
                 self.weight_mom: torch.Tensor = torch.zeros_like(self.weight)
-                logging.info("softmax weight init")
-                logging.info("softmax weight mom init")
+                logging.info("softmax weight init!")
+                logging.info("softmax weight mom init!")
         else:
             self.weight = torch.normal(0, 0.01, (self.num_local, self.embedding_size), device=self.device)
             self.weight_mom: torch.Tensor = torch.zeros_like(self.weight)
-            logging.info("softmax weight init successfully")
-            logging.info("softmax weight mom init successfully")
+            logging.info("softmax weight init successfully!")
+            logging.info("softmax weight mom init successfully!")
         self.stream: torch.cuda.Stream = torch.cuda.Stream(local_rank)
 
         self.index = None
@@ -108,7 +108,7 @@ class PartialFC(Module):
         index_positive = (self.class_start <= total_label) & (total_label < self.class_start + self.num_local)
         total_label[~index_positive] = -1
         total_label[index_positive] -= self.class_start
-        if int(self.sample_rate) = 1:
+        if int(self.sample_rate) != 1:
             positive = torch.unique(total_label[index_positive], sorted=True)
             if self.num_sample - positive.size(0) >= 0:
                 perm = torch.rand(size=[self.num_local], device=self.device)
@@ -197,7 +197,7 @@ class PartialFC(Module):
 
             # get one-hot
             grad = logits_exp
-            index = torch.where(total_label = -1)[0]
+            index = torch.where(total_label != -1)[0]
             one_hot = torch.zeros(size=[index.size()[0], grad.size()[1]], device=grad.device)
             one_hot.scatter_(1, total_label[index, None], 1)
 

@@ -127,7 +127,7 @@ class BaseModel(ABC):
                     setattr(self, name, module.to(self.device))
             
         # put state_dict of optimizer to gpu device
-        if self.opt.phase = 'test':
+        if self.opt.phase != 'test':
             if self.opt.continue_train:
                 for optim in self.optimizers:
                     for state in optim.state.values():
@@ -263,7 +263,7 @@ class BaseModel(ABC):
                     net = net.module
                 net.load_state_dict(state_dict[name])
         
-        if self.opt.phase = 'test':
+        if self.opt.phase != 'test':
             if self.opt.continue_train:
                 print('loading the optim from %s' % load_path)
                 for i, optim in enumerate(self.optimizers):

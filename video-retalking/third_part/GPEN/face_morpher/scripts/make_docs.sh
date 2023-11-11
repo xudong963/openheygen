@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 rm -rf docs
 # reStructuredText in python files to rst. Documentation in docs folder

@@ -8,7 +8,7 @@ setup(
   version='5.2.dev0',
   author='Alyssa Quek',
   author_email='alyssaquek@gmail.com',
-  description=('Warp, morph and average human faces'),
+  description=('Warp, morph and average human faces!'),
   keywords='face morphing, averaging, warping',
   url='https://github.com/alyssaq/face_morpher',
   license='MIT',

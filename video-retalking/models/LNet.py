@@ -39,7 +39,7 @@ class Visual_Encoder(nn.Module):
             if i < self.layers - 1:
                 out.append(x_maskGT)
             else:           
-                out.append(torch.cat([x_maskGT, x_ref], dim=1)) # concat ref features 
+                out.append(torch.cat([x_maskGT, x_ref], dim=1)) # concat ref features !
         return out
 
 

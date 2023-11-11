@@ -34,7 +34,7 @@ class IBasicBlock(nn.Module):
     def __init__(self, inplanes, planes, stride=1, downsample=None,
                  groups=1, base_width=64, dilation=1):
         super(IBasicBlock, self).__init__()
-        if groups = 1 or base_width = 64:
+        if groups != 1 or base_width != 64:
             raise ValueError('BasicBlock only supports groups=1 and base_width=64')
         if dilation > 1:
             raise NotImplementedError("Dilation > 1 not supported in BasicBlock")
@@ -73,7 +73,7 @@ class IResNet(nn.Module):
         self.dilation = 1
         if replace_stride_with_dilation is None:
             replace_stride_with_dilation = [False, False, False]
-        if len(replace_stride_with_dilation) = 3:
+        if len(replace_stride_with_dilation) != 3:
             raise ValueError("replace_stride_with_dilation should be None "
                              "or a 3-element tuple, got {}".format(replace_stride_with_dilation))
         self.groups = groups
@@ -122,7 +122,7 @@ class IResNet(nn.Module):
         if dilate:
             self.dilation *= stride
             stride = 1
-        if stride = 1 or self.inplanes = planes * block.expansion:
+        if stride != 1 or self.inplanes != planes * block.expansion:
             downsample = nn.Sequential(
                 conv1x1(self.inplanes, planes * block.expansion, stride),
                 nn.BatchNorm2d(planes * block.expansion, eps=1e-05, ),

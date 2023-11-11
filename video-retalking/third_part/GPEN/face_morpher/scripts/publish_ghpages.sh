@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash          
 
 # delete previous gh-pages
 git branch -D gh-pages

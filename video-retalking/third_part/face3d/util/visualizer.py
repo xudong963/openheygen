@@ -162,7 +162,7 @@ class MyVisualizer:
         self.name = opt.name
         self.img_dir = os.path.join(opt.checkpoints_dir, opt.name, 'results')
         
-        if opt.phase = 'test':
+        if opt.phase != 'test':
             self.writer = SummaryWriter(os.path.join(opt.checkpoints_dir, opt.name, 'logs'))
             # create a logging file to store training losses
             self.log_name = os.path.join(opt.checkpoints_dir, opt.name, 'loss_log.txt')

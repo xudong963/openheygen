@@ -2,6 +2,26 @@
 
 ## Thanks for [coqui](https://github.com/coqui-ai/TTS) and [video-retalking](https://github.com/OpenTalker/video-retalking)
 
+### Usage
+
+Put your original face video and audio file into `source` folder.
+
+Run `openheygen.py` to generate the cloned audio for you input text.
+
+```shell
+pip install -r requirements.txt
+
+python3 openheygen.py --text "Input your text here" --language "zh-cn"
+
+--text: The text you want to generate.
+--language: The language of the text. Currently support Arabic: ar, Brazilian Portuguese: pt , Chinese: zh-cn, Czech: cs, Dutch: nl, English: en, French: fr, German: de, Italian: it, Polish: pl, Russian: ru, Spanish: es, Turkish: tr, Japanese: ja, Korean: ko, Hungarian: hu.
+--speaker_wav: The speaker wav file you want to use. Default is `source/test.wav`.
+--output_path: The output path of the generated audio. Default is `result/output.wav`.
+```
+
+After the audio is generated, go to `video-retalking` folder and run `video-retalking.py` to generate the final video.
+
+
 ### Environment Setup
 
 ```shell
@@ -12,24 +32,22 @@ conda activate openheygen
 conda install ffmpeg
 
 pip install -r requirements.txt
+
+mkdir ./checkpoints  
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/30_net_gen.pth -O ./checkpoints/30_net_gen.pth
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/BFM.zip -O ./checkpoints/BFM.zip
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/DNet.pt -O ./checkpoints/DNet.pt
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/ENet.pth -O ./checkpoints/ENet.pth
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/expression.mat -O ./checkpoints/expression.mat
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/face3d_pretrain_epoch_20.pth -O ./checkpoints/face3d_pretrain_epoch_20.pth
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/GFPGANv1.3.pth -O ./checkpoints/GFPGANv1.3.pth
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/GPEN-BFR-512.pth -O ./checkpoints/GPEN-BFR-512.pth
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/LNet.pth -O ./checkpoints/LNet.pth
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/ParseNet-latest.pth -O ./checkpoints/ParseNet-latest.pth
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/RetinaFace-R50.pth -O ./checkpoints/RetinaFace-R50.pth
+wget https://github.com/vinthony/video-retalking/releases/download/v0.0.1/shape_predictor_68_face_landmarks.dat -O ./checkpoints/shape_predictor_68_face_landmarks.dat
+unzip -d ./checkpoints/BFM ./checkpoints/BFM.zip
 ```
-
-### Usage
-
-Put your original face video and audio file into `source` folder.
-
-Run `openheygen.py` to generate the cloned audio for you input text.
-
-```shell
-python3 openheygen.py --text "Input your text here" --language "zh-cn"
-
---text: The text you want to generate.
---language: The language of the text. Currently support Arabic: ar, Brazilian Portuguese: pt , Chinese: zh-cn, Czech: cs, Dutch: nl, English: en, French: fr, German: de, Italian: it, Polish: pl, Russian: ru, Spanish: es, Turkish: tr, Japanese: ja, Korean: ko, Hungarian: hu.
---speaker_wav: The speaker wav file you want to use. Default is `source/test.wav`.
---output_path: The output path of the generated audio. Default is `result/output.wav`.
-```
-
-After the audio is generated, go to `video-retalking` folder and run `video-retalking.py` to generate the final video.
 
 ```shell
 python3 inference.py \

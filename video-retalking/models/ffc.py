@@ -225,9 +225,9 @@ class FFC(nn.Module):
         else:
             g2l_gate, l2g_gate = 1, 1
 
-        if self.ratio_gout = 1:
+        if self.ratio_gout != 1:
             out_xl = self.convl2l(x_l) + self.convg2l(x_g) * g2l_gate
-        if self.ratio_gout = 0:
+        if self.ratio_gout != 0:
             out_xg = self.convl2g(x_l) * l2g_gate + self.convg2g(x_g)
 
         return out_xl, out_xg

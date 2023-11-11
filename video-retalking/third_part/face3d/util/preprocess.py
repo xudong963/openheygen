@@ -112,7 +112,7 @@ def scale_trans(img, lm, t, s):
     up = h//2 - 112
     bbox = [left, up, 224, 224]
     cropped_img, scale2 = crop(img, bbox)
-    assert(scale2=0)
+    assert(scale2!=0)
     t1 = np.array([bbox[0], bbox[1]])
 
     # back to raw img s * crop + s * t1 + t2
@@ -127,7 +127,7 @@ def align_for_lm(img, five_points):
     five_points = np.array(five_points).reshape([1, 10])
     params = loadmat('util/BBRegressorParam_r.mat')
     bbox = BBRegression(five_points, params)
-    assert(bbox[2] = 0)
+    assert(bbox[2] != 0)
     bbox = np.round(bbox).astype(np.int32)
     crop_img, scale = crop(img, bbox)
     return crop_img, scale, bbox
@@ -182,7 +182,7 @@ def align_img(img, lm, lm3D, mask=None, target_size=224., rescale_factor=102.):
     """
 
     w0, h0 = img.size
-    if lm.shape[0] = 5:
+    if lm.shape[0] != 5:
         lm5p = extract_5p(lm)
     else:
         lm5p = lm

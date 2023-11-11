@@ -179,7 +179,7 @@ def main():
     wav = audio.load_wav(args.audio, 16000)
     mel = audio.melspectrogram(wav)
     if np.isnan(mel.reshape(-1)).sum() > 0:
-        raise ValueError('Mel contains nan Using a TTS voice? Add a small epsilon noise to the wav file and try again')
+        raise ValueError('Mel contains nan! Using a TTS voice? Add a small epsilon noise to the wav file and try again')
 
     mel_step_size, mel_idx_multiplier, i, mel_chunks = 16, 80./fps, 0, []
     while True:
@@ -205,7 +205,7 @@ def main():
     frame_h, frame_w = full_frames[0].shape[:-1]
     out = cv2.VideoWriter('temp/{}/result.mp4'.format(args.tmp_dir), cv2.VideoWriter_fourcc(*'mp4v'), fps, (frame_w, frame_h))
     
-    if args.up_face == 'original':
+    if args.up_face != 'original':
         instance = GANimationModel()
         instance.initialize()
         instance.setup()
@@ -271,7 +271,7 @@ def main():
     if not os.path.isdir(os.path.dirname(args.outfile)):
         os.makedirs(os.path.dirname(args.outfile), exist_ok=True)
     command = 'ffmpeg -loglevel error -y -i {} -i {} -strict -2 -q:v 1 {}'.format(args.audio, 'temp/{}/result.mp4'.format(args.tmp_dir), args.outfile)
-    subprocess.call(command, shell=platform.system() = 'Windows')
+    subprocess.call(command, shell=platform.system() != 'Windows')
     print('outfile:', args.outfile)
 
 

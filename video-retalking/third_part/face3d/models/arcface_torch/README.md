@@ -46,7 +46,7 @@ python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1 --node_rank=0 -
 - The models are available for non-commercial research purposes only.  
 - All models can be found in here.  
 - [Baidu Yun Pan](https://pan.baidu.com/s/1CL-l4zWqsI1oDuEEYVhj-g):   e8pw  
-- [onedrive](https://1drv.ms/u/sAswpsDO2toNKq0lWY69vN58GR6mw?e=p9Ov5d)
+- [onedrive](https://1drv.ms/u/s!AswpsDO2toNKq0lWY69vN58GR6mw?e=p9Ov5d)
 
 ### Performance on [**ICCV2021-MFR**](http://iccv21-mfr.com/)
 
@@ -102,7 +102,7 @@ sparse part of the parameters will be updated, which can reduce a lot of GPU mem
 we can scale trainset of 29 millions identities, the largest to date. Partial FC also supports multi-machine distributed 
 training and mixed precision training.
 
-[Image text](https://github.com/anxiangsir/insightface_arcface_log/blob/master/partial_fc_v2.png)
+![Image text](https://github.com/anxiangsir/insightface_arcface_log/blob/master/partial_fc_v2.png)
 
 More details see 
 [speed_benchmark.md](docs/speed_benchmark.md) in docs.

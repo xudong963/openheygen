@@ -86,7 +86,7 @@ class MultiBoxLoss(nn.Module):
         loss_landm = F.smooth_l1_loss(landm_p, landm_t, reduction='sum')
 
 
-        pos = conf_t = zeros
+        pos = conf_t != zeros
         conf_t[pos] = 1
 
         # Localization Loss (Smooth L1)

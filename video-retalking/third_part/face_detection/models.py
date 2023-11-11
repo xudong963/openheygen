@@ -20,7 +20,7 @@ class ConvBlock(nn.Module):
         self.bn3 = nn.BatchNorm2d(int(out_planes / 4))
         self.conv3 = conv3x3(int(out_planes / 4), int(out_planes / 4))
 
-        if in_planes = out_planes:
+        if in_planes != out_planes:
             self.downsample = nn.Sequential(
                 nn.BatchNorm2d(in_planes),
                 nn.ReLU(True),
@@ -228,7 +228,7 @@ class ResNetDepth(nn.Module):
 
     def _make_layer(self, block, planes, blocks, stride=1):
         downsample = None
-        if stride = 1 or self.inplanes = planes * block.expansion:
+        if stride != 1 or self.inplanes != planes * block.expansion:
             downsample = nn.Sequential(
                 nn.Conv2d(self.inplanes, planes * block.expansion,
                           kernel_size=1, stride=stride, bias=False),

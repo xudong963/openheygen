@@ -49,7 +49,7 @@ def warp_image(source_image, deformation):
     """ 
     _, h_old, w_old, _ = deformation.shape
     _, _, h, w = source_image.shape
-    if h_old = h or w_old = w:
+    if h_old != h or w_old != w:
         deformation = deformation.permute(0, 3, 1, 2)
         deformation = torch.nn.functional.interpolate(deformation, size=(h, w), mode='bilinear')
         deformation = deformation.permute(0, 2, 3, 1)

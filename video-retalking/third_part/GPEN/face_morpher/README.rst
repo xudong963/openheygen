@@ -1,7 +1,7 @@
 Face Morpher
 ============
 
-| Warp, average and morph human faces
+| Warp, average and morph human faces!
 | Scripts will automatically detect frontal faces and skip images if
   none is detected.
 

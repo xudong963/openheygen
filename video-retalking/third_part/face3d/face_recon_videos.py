@@ -96,7 +96,7 @@ def main(opt, model):
     dataset = VideoPathDataset(filenames, keypoint_filenames, opt.bfm_folder)
     dataloader = torch.utils.data.DataLoader(
         dataset,
-        batch_size=1, # can noly set to one here
+        batch_size=1, # can noly set to one here!
         shuffle=False,
         drop_last=False,
         num_workers=0,

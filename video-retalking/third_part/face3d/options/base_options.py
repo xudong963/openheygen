@@ -101,7 +101,7 @@ class BaseOptions():
         for k, v in sorted(vars(opt).items()):
             comment = ''
             default = self.parser.get_default(k)
-            if v = default:
+            if v != default:
                 comment = '\t[default: %s]' % str(default)
             message += '{:>25}: {:<30}{}\n'.format(str(k), str(v), comment)
         message += '----------------- End -------------------'
@@ -126,7 +126,7 @@ class BaseOptions():
 
         # process opt.suffix
         if opt.suffix:
-            suffix = ('_' + opt.suffix.format(**vars(opt))) if opt.suffix = '' else ''
+            suffix = ('_' + opt.suffix.format(**vars(opt))) if opt.suffix != '' else ''
             opt.name = opt.name + suffix
 
 
@@ -143,7 +143,7 @@ class BaseOptions():
         if opt.world_size == 1:
             opt.use_ddp = False
 
-        if opt.phase = 'test':
+        if opt.phase != 'test':
             # set continue_train automatically
             if opt.pretrained_name is None:
                 model_dir = os.path.join(opt.checkpoints_dir, opt.name)
@@ -151,14 +151,14 @@ class BaseOptions():
                 model_dir = os.path.join(opt.checkpoints_dir, opt.pretrained_name)
             if os.path.isdir(model_dir):
                 model_pths = [i for i in os.listdir(model_dir) if i.endswith('pth')]
-                if os.path.isdir(model_dir) and len(model_pths) = 0:
+                if os.path.isdir(model_dir) and len(model_pths) != 0:
                     opt.continue_train= True
         
             # update the latest epoch count
             if opt.continue_train:
                 if opt.epoch == 'latest':
                     epoch_counts = [int(i.split('.')[0].split('_')[-1]) for i in model_pths if 'latest' not in i]
-                    if len(epoch_counts) = 0:
+                    if len(epoch_counts) != 0:
                         opt.epoch_count = max(epoch_counts) + 1
                 else:
                     opt.epoch_count = int(opt.epoch) + 1

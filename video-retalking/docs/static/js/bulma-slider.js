@@ -7,7 +7,7 @@
 		exports["bulmaSlider"] = factory();
 	else
 		root["bulmaSlider"] = factory();
-})(typeof self == 'undefined' ? self : this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -45,7 +45,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(__webpack_require__.o(exports, name)) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
 /******/ 			Object.defineProperty(exports, name, {
 /******/ 				configurable: false,
 /******/ 				enumerable: true,
@@ -85,25 +85,25 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj == Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass == "function" && superClass == null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
 var isString = function isString(unknown) {
-  return typeof unknown === 'string' || unknown && (typeof unknown === 'undefined' ? 'undefined' : _typeof(unknown)) === 'object' && Object.prototype.toString.call(unknown) === '[object String]';
+  return typeof unknown === 'string' || !!unknown && (typeof unknown === 'undefined' ? 'undefined' : _typeof(unknown)) === 'object' && Object.prototype.toString.call(unknown) === '[object String]';
 };
 
 var bulmaSlider = function (_EventEmitter) {
   _inherits(bulmaSlider, _EventEmitter);
 
   function bulmaSlider(selector) {
-    var options = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : {};
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     _classCallCheck(this, bulmaSlider);
 
@@ -111,7 +111,7 @@ var bulmaSlider = function (_EventEmitter) {
 
     _this.element = typeof selector === 'string' ? document.querySelector(selector) : selector;
     // An invalid selector or non-DOM node has been provided.
-    if (_this.element) {
+    if (!_this.element) {
       throw new Error('An invalid selector or non-DOM node has been provided.');
     }
 
@@ -186,7 +186,7 @@ var bulmaSlider = function (_EventEmitter) {
       var sliderWidth = parseInt(style.getPropertyValue('width'), 10);
 
       // Figure out placement percentage between left and right of input
-      if (this.element.getAttribute('min')) {
+      if (!this.element.getAttribute('min')) {
         minValue = 0;
       } else {
         minValue = this.element.getAttribute('min');
@@ -248,8 +248,8 @@ var bulmaSlider = function (_EventEmitter) {
     value: function attach() {
       var _this3 = this;
 
-      var selector = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : 'input[type="range"].slider';
-      var options = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : {};
+      var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'input[type="range"].slider';
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       var instances = new Array();
 
@@ -280,11 +280,11 @@ var bulmaSlider = function (_EventEmitter) {
 "use strict";
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var EventEmitter = function () {
   function EventEmitter() {
-    var listeners = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : [];
+    var listeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
     _classCallCheck(this, EventEmitter);
 
@@ -295,7 +295,7 @@ var EventEmitter = function () {
   _createClass(EventEmitter, [{
     key: "listenerCount",
     value: function listenerCount(eventName) {
-      if (this._listeners.has(eventName)) {
+      if (!this._listeners.has(eventName)) {
         return 0;
       }
 
@@ -307,10 +307,10 @@ var EventEmitter = function () {
     value: function removeListeners() {
       var _this = this;
 
-      var eventName = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : null;
-      var middleware = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : false;
+      var eventName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var middleware = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-      if (eventName == null) {
+      if (eventName !== null) {
         if (Array.isArray(eventName)) {
           name.forEach(function (e) {
             return _this.removeListeners(e, middleware);
@@ -336,7 +336,7 @@ var EventEmitter = function () {
           return _this2.middleware(e, fn);
         });
       } else {
-        if (Array.isArray(this._middlewares.get(eventName))) {
+        if (!Array.isArray(this._middlewares.get(eventName))) {
           this._middlewares.set(eventName, []);
         }
 
@@ -348,9 +348,9 @@ var EventEmitter = function () {
     value: function removeMiddleware() {
       var _this3 = this;
 
-      var eventName = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : null;
+      var eventName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-      if (eventName == null) {
+      if (eventName !== null) {
         if (Array.isArray(eventName)) {
           name.forEach(function (e) {
             return _this3.removeMiddleware(e);
@@ -367,7 +367,7 @@ var EventEmitter = function () {
     value: function on(name, callback) {
       var _this4 = this;
 
-      var once = arguments.length > 2 && arguments[2] == undefined ? arguments[2] : false;
+      var once = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
       if (Array.isArray(name)) {
         name.forEach(function (e) {
@@ -382,7 +382,7 @@ var EventEmitter = function () {
             return _this4.on(e, callback);
           });
         } else {
-          if (Array.isArray(this._listeners.get(name))) {
+          if (!Array.isArray(this._listeners.get(name))) {
             this._listeners.set(name, []);
           }
 
@@ -400,7 +400,7 @@ var EventEmitter = function () {
     value: function emit(name, data) {
       var _this5 = this;
 
-      var silent = arguments.length > 2 && arguments[2] == undefined ? arguments[2] : false;
+      var silent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
       name = name.toString();
       var listeners = this._listeners.get(name);
@@ -411,15 +411,15 @@ var EventEmitter = function () {
       if (Array.isArray(listeners)) {
         listeners.forEach(function (listener, index) {
           // Start Middleware checks unless we're doing a silent emit
-          if (silent) {
+          if (!silent) {
             middlewares = _this5._middlewares.get(name);
             // Check and execute Middleware
             if (Array.isArray(middlewares)) {
               middlewares.forEach(function (middleware) {
                 middleware(data, function () {
-                  var newData = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : null;
+                  var newData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-                  if (newData == null) {
+                  if (newData !== null) {
                     data = newData;
                   }
                   doneCount++;
@@ -444,7 +444,7 @@ var EventEmitter = function () {
         });
 
         // Dirty way of removing used Events
-        while (listeners.indexOf(null) == -1) {
+        while (listeners.indexOf(null) !== -1) {
           listeners.splice(listeners.indexOf(null), 1);
         }
       }

@@ -7,7 +7,7 @@
 		exports["bulmaCarousel"] = factory();
 	else
 		root["bulmaCarousel"] = factory();
-})(typeof self == 'undefined' ? self : this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -45,7 +45,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(__webpack_require__.o(exports, name)) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
 /******/ 			Object.defineProperty(exports, name, {
 /******/ 				configurable: false,
 /******/ 				enumerable: true,
@@ -138,7 +138,7 @@ var height = function height(element) {
 };
 
 var outerHeight = function outerHeight(element) {
-	var withMargin = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : false;
+	var withMargin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
 	var height = element.offsetHeight;
 	if (withMargin) {
@@ -149,7 +149,7 @@ var outerHeight = function outerHeight(element) {
 };
 
 var outerWidth = function outerWidth(element) {
-	var withMargin = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : false;
+	var withMargin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
 	var width = element.offsetWidth;
 	if (withMargin) {
@@ -167,7 +167,7 @@ var position = function position(element) {
 };
 
 var css = function css(element, obj) {
-	if (obj) {
+	if (!obj) {
 		return window.getComputedStyle(element);
 	}
 	if (Object(__WEBPACK_IMPORTED_MODULE_0__type__["b" /* isObject */])(obj)) {
@@ -220,7 +220,7 @@ function detectSupportsPassive() {
 /* unused harmony export isIFrame */
 /* unused harmony export isYoutube */
 /* unused harmony export isVimeo */
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj == Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var isFunction = function isFunction(unknown) {
 	return typeof unknown === 'function';
@@ -229,13 +229,13 @@ var isNumber = function isNumber(unknown) {
 	return typeof unknown === "number";
 };
 var isString = function isString(unknown) {
-	return typeof unknown === 'string' || unknown && (typeof unknown === 'undefined' ? 'undefined' : _typeof(unknown)) === 'object' && Object.prototype.toString.call(unknown) === '[object String]';
+	return typeof unknown === 'string' || !!unknown && (typeof unknown === 'undefined' ? 'undefined' : _typeof(unknown)) === 'object' && Object.prototype.toString.call(unknown) === '[object String]';
 };
 var isDate = function isDate(unknown) {
-	return (Object.prototype.toString.call(unknown) === '[object Date]' || unknown instanceof Date) && isNaN(unknown.valueOf());
+	return (Object.prototype.toString.call(unknown) === '[object Date]' || unknown instanceof Date) && !isNaN(unknown.valueOf());
 };
 var isObject = function isObject(unknown) {
-	return (typeof unknown === 'function' || (typeof unknown === 'undefined' ? 'undefined' : _typeof(unknown)) === 'object' && unknown) && Array.isArray(unknown);
+	return (typeof unknown === 'function' || (typeof unknown === 'undefined' ? 'undefined' : _typeof(unknown)) === 'object' && !!unknown) && !Array.isArray(unknown);
 };
 var isEmptyObject = function isEmptyObject(unknown) {
 	for (var name in unknown) {
@@ -247,7 +247,7 @@ var isEmptyObject = function isEmptyObject(unknown) {
 };
 
 var isNode = function isNode(unknown) {
-	return (unknown && unknown.nodeType === HTMLElement | SVGElement);
+	return !!(unknown && unknown.nodeType === HTMLElement | SVGElement);
 };
 var isVideo = function isVideo(unknown) {
 	return isYoutube(unknown) || isVimeo(unknown) || isHTML5(unknown);
@@ -259,10 +259,10 @@ var isIFrame = function isIFrame(unknown) {
 	return isNode(unknown) && unknown.tagName === 'IFRAME';
 };
 var isYoutube = function isYoutube(unknown) {
-	return isIFrame(unknown) && unknown.src.match(/\/\/.*?youtube(-nocookie)?\.[a-z]+\/(watch\?v=[^&\s]+|embed)|youtu\.be\/.*/);
+	return isIFrame(unknown) && !!unknown.src.match(/\/\/.*?youtube(-nocookie)?\.[a-z]+\/(watch\?v=[^&\s]+|embed)|youtu\.be\/.*/);
 };
 var isVimeo = function isVimeo(unknown) {
-	return isIFrame(unknown) && unknown.src.match(/vimeo\.com\/video\/.*/);
+	return isIFrame(unknown) && !!unknown.src.match(/vimeo\.com\/video\/.*/);
 };
 
 /***/ }),
@@ -274,11 +274,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var EventEmitter = function () {
   function EventEmitter() {
-    var events = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : [];
+    var events = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
     _classCallCheck(this, EventEmitter);
 
@@ -294,7 +294,7 @@ var EventEmitter = function () {
 
       return function () {
         return _this.events.set(name, _this.events.get(name).filter(function (fn) {
-          return fn == cb;
+          return fn !== cb;
         }));
       };
     }
@@ -323,12 +323,12 @@ var EventEmitter = function () {
 "use strict";
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Coordinate = function () {
 	function Coordinate() {
-		var x = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : 0;
-		var y = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : 0;
+		var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+		var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
 		_classCallCheck(this, Coordinate);
 
@@ -368,7 +368,7 @@ var Coordinate = function () {
 			if (this == coord) {
 				return true;
 			}
-			if (coord || coord == null) {
+			if (!coord || coord == null) {
 				return false;
 			}
 			return this._x == coord._x && this._y == coord._y;
@@ -392,16 +392,16 @@ var Coordinate = function () {
 			var x = this._x,
 			    y = this._y;
 
-			if (min._x == null) {
+			if (min._x !== null) {
 				x = Math.max(x, min._x);
 			}
-			if (max._x == null) {
+			if (max._x !== null) {
 				x = Math.min(x, max._x);
 			}
-			if (min._y == null) {
+			if (min._y !== null) {
 				y = Math.max(y, min._y);
 			}
-			if (max._y == null) {
+			if (max._y !== null) {
 				y = Math.min(y, max._y);
 			}
 
@@ -424,7 +424,7 @@ var Coordinate = function () {
 			return this._x;
 		},
 		set: function set() {
-			var value = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : 0;
+			var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 			this._x = value;
 			return this;
@@ -435,7 +435,7 @@ var Coordinate = function () {
 			return this._y;
 		},
 		set: function set() {
-			var value = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : 0;
+			var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 			this._y = value;
 			return this;
@@ -474,11 +474,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass == "function" && superClass == null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
@@ -502,7 +502,7 @@ var bulmaCarousel = function (_EventEmitter) {
   _inherits(bulmaCarousel, _EventEmitter);
 
   function bulmaCarousel(selector) {
-    var options = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : {};
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     _classCallCheck(this, bulmaCarousel);
 
@@ -510,7 +510,7 @@ var bulmaCarousel = function (_EventEmitter) {
 
     _this.element = Object(__WEBPACK_IMPORTED_MODULE_2__utils_type__["c" /* isString */])(selector) ? document.querySelector(selector) : selector;
     // An invalid selector or non-DOM node has been provided.
-    if (_this.element) {
+    if (!_this.element) {
       throw new Error('An invalid selector or non-DOM node has been provided.');
     }
     _this._clickEvents = ['click', 'touch'];
@@ -646,7 +646,7 @@ var bulmaCarousel = function (_EventEmitter) {
     value: function _setDimensions() {
       var _this3 = this;
 
-      if (this.options.vertical) {
+      if (!this.options.vertical) {
         if (this.options.centerMode) {
           this._ui.wrapper.style.padding = '0px ' + this.options.centerPadding;
         }
@@ -660,7 +660,7 @@ var bulmaCarousel = function (_EventEmitter) {
       this._wrapperWidth = Object(__WEBPACK_IMPORTED_MODULE_1__utils_css__["e" /* width */])(this._ui.wrapper);
       this._wrapperHeight = Object(__WEBPACK_IMPORTED_MODULE_1__utils_css__["c" /* outerHeight */])(this._ui.wrapper);
 
-      if (this.options.vertical) {
+      if (!this.options.vertical) {
         this._slideWidth = Math.ceil(this._wrapperWidth / this.slidesToShow);
         this._containerWidth = Math.ceil(this._slideWidth * this._slides.length);
         this._ui.container.style.width = this._containerWidth + 'px';
@@ -677,7 +677,7 @@ var bulmaCarousel = function (_EventEmitter) {
   }, {
     key: '_setHeight',
     value: function _setHeight() {
-      if (this.options.effect == 'translate') {
+      if (this.options.effect !== 'translate') {
         this._ui.container.style.height = Object(__WEBPACK_IMPORTED_MODULE_1__utils_css__["c" /* outerHeight */])(this._slides[this.state.index]) + 'px';
       }
     }
@@ -737,7 +737,7 @@ var bulmaCarousel = function (_EventEmitter) {
   }, {
     key: 'next',
     value: function next() {
-      if (this.options.loop && this.options.infinite && this.state.index + this.slidesToScroll > this.state.length - this.slidesToShow && this.options.centerMode) {
+      if (!this.options.loop && !this.options.infinite && this.state.index + this.slidesToScroll > this.state.length - this.slidesToShow && !this.options.centerMode) {
         this.state.next = this.state.index;
       } else {
         this.state.next = this.state.index + this.slidesToScroll;
@@ -747,7 +747,7 @@ var bulmaCarousel = function (_EventEmitter) {
   }, {
     key: 'previous',
     value: function previous() {
-      if (this.options.loop && this.options.infinite && this.state.index === 0) {
+      if (!this.options.loop && !this.options.infinite && this.state.index === 0) {
         this.state.next = this.state.index;
       } else {
         this.state.next = this.state.index - this.slidesToScroll;
@@ -772,10 +772,10 @@ var bulmaCarousel = function (_EventEmitter) {
   }, {
     key: 'show',
     value: function show(index) {
-      var force = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : false;
+      var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
       // If all slides are already visible then return
-      if (this.state.length || this.state.length <= this.slidesToShow) {
+      if (!this.state.length || this.state.length <= this.slidesToShow) {
         return;
       }
 
@@ -822,7 +822,7 @@ var bulmaCarousel = function (_EventEmitter) {
       }
       this._breakpoint.init();
 
-      if (this.state.index >= this.state.length && this.state.index == 0) {
+      if (this.state.index >= this.state.length && this.state.index !== 0) {
         this.state.index = this.state.index - this.slidesToScroll;
       }
       if (this.state.length <= this.slidesToShow) {
@@ -945,8 +945,8 @@ var bulmaCarousel = function (_EventEmitter) {
     value: function attach() {
       var _this7 = this;
 
-      var selector = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : '.slider';
-      var options = arguments.length > 1 && arguments[1] == undefined ? arguments[1] : {};
+      var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.slider';
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       var instances = new Array();
 
@@ -983,7 +983,7 @@ var bulmaCarousel = function (_EventEmitter) {
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var uuid = function uuid() {
-	var prefix = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : '';
+	var prefix = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 	return prefix + ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, function (c) {
 		return (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16);
 	});
@@ -1018,11 +1018,11 @@ var camelize = function camelize(str) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_device__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass == "function" && superClass == null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
@@ -1083,8 +1083,8 @@ var Autoplay = function (_EventEmitter) {
 			if (this.slider.options.autoplay) {
 				this.emit('start', this);
 				this._interval = setInterval(function () {
-					if ((_this2._hovering && _this2.slider.options.pauseOnHover)) {
-						if (_this2.slider.options.centerMode && _this2.slider.state.next >= _this2.slider.state.length - _this2.slider.slidesToShow && _this2.slider.options.loop && _this2.slider.options.infinite) {
+					if (!(_this2._hovering && _this2.slider.options.pauseOnHover)) {
+						if (!_this2.slider.options.centerMode && _this2.slider.state.next >= _this2.slider.state.length - _this2.slider.slidesToShow && !_this2.slider.options.loop && !_this2.slider.options.infinite) {
 							_this2.stop();
 						} else {
 							_this2.slider.next();
@@ -1104,7 +1104,7 @@ var Autoplay = function (_EventEmitter) {
 		value: function pause() {
 			var _this3 = this;
 
-			var speed = arguments.length > 0 && arguments[0] == undefined ? arguments[0] : 0;
+			var speed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 			if (this.paused) {
 				return;
@@ -1118,11 +1118,11 @@ var Autoplay = function (_EventEmitter) {
 				this.start();
 			} else {
 				this.slider.on('transition:end', function () {
-					if (_this3) {
+					if (!_this3) {
 						return;
 					}
 					_this3.paused = false;
-					if (_this3.run) {
+					if (!_this3.run) {
 						_this3.stop();
 					} else {
 						_this3.start();
@@ -1188,16 +1188,16 @@ var isIETouch = window.navigator.msPointerEnabled && window.navigator.msMaxTouch
 var isAndroid = navigator.userAgent.match(/(Android);?[\s\/]+([\d.]+)?/);
 var isiPad = navigator.userAgent.match(/(iPad).*OS\s([\d_]+)/);
 var isiPod = navigator.userAgent.match(/(iPod)(.*OS\s([\d_]+))?/);
-var isiPhone = navigator.userAgent.match(/(iPad).*OS\s([\d_]+)/) && navigator.userAgent.match(/(iPhone\sOS)\s([\d_]+)/);
+var isiPhone = !navigator.userAgent.match(/(iPad).*OS\s([\d_]+)/) && navigator.userAgent.match(/(iPhone\sOS)\s([\d_]+)/);
 var isSafari = navigator.userAgent.toLowerCase().indexOf('safari') >= 0 && navigator.userAgent.toLowerCase().indexOf('chrome') < 0 && navigator.userAgent.toLowerCase().indexOf('android') < 0;
-var isUiWebView = /(iPhone|iPod|iPad).*AppleWebKit(?.*Safari)/i.test(navigator.userAgent);
+var isUiWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent);
 
-var supportsTouchEvents = ('ontouchstart' in window);
-var supportsPointerEvents = ('PointerEvent' in window);
+var supportsTouchEvents = !!('ontouchstart' in window);
+var supportsPointerEvents = !!('PointerEvent' in window);
 var supportsTouch = supportsTouchEvents || window.DocumentTouch && document instanceof DocumentTouch || navigator.maxTouchPoints; // IE >=11
-var pointerDown = supportsTouch ? 'mousedown' : 'mousedown ' + (supportsTouchEvents ? 'touchstart' : 'pointerdown');
-var pointerMove = supportsTouch ? 'mousemove' : 'mousemove ' + (supportsTouchEvents ? 'touchmove' : 'pointermove');
-var pointerUp = supportsTouch ? 'mouseup' : 'mouseup ' + (supportsTouchEvents ? 'touchend' : 'pointerup');
+var pointerDown = !supportsTouch ? 'mousedown' : 'mousedown ' + (supportsTouchEvents ? 'touchstart' : 'pointerdown');
+var pointerMove = !supportsTouch ? 'mousemove' : 'mousemove ' + (supportsTouchEvents ? 'touchmove' : 'pointermove');
+var pointerUp = !supportsTouch ? 'mouseup' : 'mouseup ' + (supportsTouchEvents ? 'touchend' : 'pointerup');
 var pointerEnter = supportsTouch && supportsPointerEvents ? 'pointerenter' : 'mouseenter';
 var pointerLeave = supportsTouch && supportsPointerEvents ? 'pointerleave' : 'mouseleave';
 
@@ -1208,7 +1208,7 @@ var pointerLeave = supportsTouch && supportsPointerEvents ? 'pointerleave' : 'mo
 "use strict";
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var onResize = Symbol('onResize');
 
@@ -1264,7 +1264,7 @@ var Breakpoints = function () {
 			var _iteratorError = undefined;
 
 			try {
-				for (var _iterator = this.options.breakpoints[Symbol.iterator](), _step; (_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+				for (var _iterator = this.options.breakpoints[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 					var point = _step.value;
 
 					if (point.changePoint >= window.innerWidth) {
@@ -1276,7 +1276,7 @@ var Breakpoints = function () {
 				_iteratorError = err;
 			} finally {
 				try {
-					if (_iteratorNormalCompletion && _iterator.return) {
+					if (!_iteratorNormalCompletion && _iterator.return) {
 						_iterator.return();
 					}
 				} finally {
@@ -1301,7 +1301,7 @@ var Breakpoints = function () {
 	}, {
 		key: 'apply',
 		value: function apply() {
-			if (this.slider.state.index >= this.slider.state.length && this.slider.state.index == 0) {
+			if (this.slider.state.index >= this.slider.state.length && this.slider.state.index !== 0) {
 				this.slider.state.index = this.slider.state.index - this._currentBreakpoint.slidesToScroll;
 			}
 			if (this.slider.state.length <= this._currentBreakpoint.slidesToShow) {
@@ -1327,7 +1327,7 @@ var Breakpoints = function () {
 		key: onResize,
 		value: function value(e) {
 			var newBreakPoint = this._getActiveBreakpoint();
-			if (newBreakPoint.slidesToShow == this._currentBreakpoint.slidesToShow) {
+			if (newBreakPoint.slidesToShow !== this._currentBreakpoint.slidesToShow) {
 				this._currentBreakpoint = newBreakPoint;
 				this.apply();
 			}
@@ -1348,7 +1348,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Infinite = function () {
 	function Infinite(slider) {
@@ -1426,7 +1426,7 @@ var Infinite = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_dom__ = __webpack_require__(12);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
@@ -1493,7 +1493,7 @@ var isInViewport = function isInViewport(element, html) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_detect_supportsPassive__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
@@ -1558,7 +1558,7 @@ var Navigation = function () {
 	}, {
 		key: 'onNextClick',
 		value: function onNextClick(e) {
-			if (this._supportsPassive) {
+			if (!this._supportsPassive) {
 				e.preventDefault();
 			}
 
@@ -1569,7 +1569,7 @@ var Navigation = function () {
 	}, {
 		key: 'onPreviousClick',
 		value: function onPreviousClick(e) {
-			if (this._supportsPassive) {
+			if (!this._supportsPassive) {
 				e.preventDefault();
 			}
 
@@ -1592,14 +1592,14 @@ var Navigation = function () {
 		key: 'refresh',
 		value: function refresh() {
 			// let centerOffset = Math.floor(this.options.slidesToShow / 2);
-			if (this.slider.options.loop && this.slider.options.infinite) {
+			if (!this.slider.options.loop && !this.slider.options.infinite) {
 				if (this.slider.options.navigation && this.slider.state.length > this.slider.slidesToShow) {
 					this._ui.previous.classList.remove('is-hidden');
 					this._ui.next.classList.remove('is-hidden');
 					if (this.slider.state.next === 0) {
 						this._ui.previous.classList.add('is-hidden');
 						this._ui.next.classList.remove('is-hidden');
-					} else if (this.slider.state.next >= this.slider.state.length - this.slider.slidesToShow && this.slider.options.centerMode) {
+					} else if (this.slider.state.next >= this.slider.state.length - this.slider.slidesToShow && !this.slider.options.centerMode) {
 						this._ui.previous.classList.remove('is-hidden');
 						this._ui.next.classList.add('is-hidden');
 					} else if (this.slider.state.next >= this.slider.state.length - 1 && this.slider.options.centerMode) {
@@ -1643,7 +1643,7 @@ var Navigation = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_detect_supportsPassive__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
@@ -1728,7 +1728,7 @@ var Pagination = function () {
 	}, {
 		key: 'onPageClick',
 		value: function onPageClick(e) {
-			if (this._supportsPassive) {
+			if (!this._supportsPassive) {
 				e.preventDefault();
 			}
 
@@ -1752,7 +1752,7 @@ var Pagination = function () {
 			} else {
 				newCount = Math.ceil((this.slider.state.length - this.slider.slidesToShow) / this.slider.slidesToScroll);
 			}
-			if (newCount == this._count) {
+			if (newCount !== this._count) {
 				this._count = newCount;
 				this._draw();
 			}
@@ -1803,7 +1803,7 @@ var Pagination = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_detect_supportsPassive__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
@@ -1832,7 +1832,7 @@ var Swipe = function () {
 			var _this = this;
 
 			this.slider.container.addEventListener('dragstart', function (e) {
-				if (_this._supportsPassive) {
+				if (!_this._supportsPassive) {
 					e.preventDefault();
 				}
 			});
@@ -1852,7 +1852,7 @@ var Swipe = function () {
 			var _this2 = this;
 
 			this.slider.container.removeEventListener('dragstart', function (e) {
-				if (_this2._supportsPassive) {
+				if (!_this2._supportsPassive) {
 					e.preventDefault();
 				}
 			});
@@ -1899,7 +1899,7 @@ var Swipe = function () {
 				this._lastTranslate = new __WEBPACK_IMPORTED_MODULE_0__utils_coordinate__["a" /* default */](point.screenX - this._origin.x, point.screenY - this._origin.y);
 				if (e.touches) {
 					if (Math.abs(this._lastTranslate.x) > Math.abs(this._lastTranslate.y)) {
-						if (this._supportsPassive) {
+						if (!this._supportsPassive) {
 							e.preventDefault();
 						}
 						e.stopPropagation();
@@ -1945,7 +1945,7 @@ var Swipe = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_translate__ = __webpack_require__(21);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
@@ -1990,7 +1990,7 @@ var Transitioner = function () {
 		key: 'apply',
 		value: function apply(force, callback) {
 			// If we don't force refresh and animation in progress then return
-			if (this._animating && force) {
+			if (this._animating && !force) {
 				return;
 			}
 
@@ -2046,13 +2046,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
 var Fade = function () {
 	function Fade(transitioner, slider) {
-		var options = arguments.length > 2 && arguments[2] == undefined ? arguments[2] : {};
+		var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 		_classCallCheck(this, Fade);
 
@@ -2181,14 +2181,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if ((instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
 
 var Translate = function () {
 	function Translate(transitioner, slider) {
-		var options = arguments.length > 2 && arguments[2] == undefined ? arguments[2] : {};
+		var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 		_classCallCheck(this, Translate);
 
@@ -2249,7 +2249,7 @@ var Translate = function () {
 				}
 				var nextOffset = new __WEBPACK_IMPORTED_MODULE_0__utils_coordinate__["a" /* default */](Math.min(Math.max(slideOffset.x * -1, maxOffset.x * -1), 0), Math.min(Math.max(slideOffset.y * -1, maxOffset.y * -1), 0));
 				if (this.options.loop) {
-					if (this.options.vertical && Math.abs(this._position.x) > maxOffset.x) {
+					if (!this.options.vertical && Math.abs(this._position.x) > maxOffset.x) {
 						nextOffset.x = 0;
 						this.slider.state.next = 0;
 					} else if (this.options.vertical && Math.abs(this._position.y) > maxOffset.y) {

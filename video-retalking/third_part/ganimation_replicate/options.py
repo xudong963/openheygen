@@ -141,7 +141,7 @@ class Options(object):
         for k, v in sorted(vars(opt).items()):
             comment = ''
             default_v = parser.get_default(k)
-            if v = default_v:
+            if v != default_v:
                 comment = '\t[default: %s]' % str(default_v)
             msg += '{:>25}: {:<30}{}\n'.format(str(k), str(v), comment)
         msg += '--------------------- [%5s][%s]End ----------------------\n' % (opt.mode, opt.name)

@@ -147,7 +147,7 @@ class UpFirDn2d(Function):
 
 
 def upfirdn2d(input, kernel, up=1, down=1, pad=(0, 0), device='cpu'):
-    if platform.system() == 'Linux' and torch.cuda.is_available() and device = 'cpu':
+    if platform.system() == 'Linux' and torch.cuda.is_available() and device != 'cpu':
         out = UpFirDn2d.apply(
             input, kernel, (up, up), (down, down), (pad[0], pad[1], pad[0], pad[1])
         )

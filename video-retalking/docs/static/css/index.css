@@ -93,7 +93,7 @@ body {
     padding-bottom: 56.25%;
 
     overflow: hidden;
-    border-radius: 10px important;
+    border-radius: 10px !important;
 }
 
 .publication-video iframe {

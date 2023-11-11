@@ -62,7 +62,7 @@ class ArcFaceORT:
         input_cfg = session.get_inputs()[0]
         input_shape = input_cfg.shape
         print('input-shape:', input_shape)
-        if len(input_shape)=4:
+        if len(input_shape)!=4:
             return "length of input_shape should be 4"
         if not isinstance(input_shape[0], str):
             #return "input_shape[0] should be str to support batch-inference"
@@ -89,7 +89,7 @@ class ArcFaceORT:
         for o in outputs:
             output_names.append(o.name)
             #print(o.name, o.shape)
-        if len(output_names)=1:
+        if len(output_names)!=1:
             return "number of output nodes should be 1"
         self.session = session
         self.input_name = input_name
@@ -106,12 +106,12 @@ class ArcFaceORT:
             crop_file = osp.join(self.model_path, 'crop.txt')
             if osp.exists(crop_file):
                 lines = open(crop_file,'r').readlines()
-                if len(lines)=6:
+                if len(lines)!=6:
                     return "crop.txt should contain 6 lines"
                 lines = [int(x) for x in lines]
                 self.crop = lines[:4]
                 input_size = tuple(lines[4:6])
-        if input_size=self.image_size:
+        if input_size!=self.image_size:
             return "input-size is inconsistant with onnx model input, %s vs %s"%(input_size, self.image_size)
 
         self.model_size_mb = os.path.getsize(self.model_file) / float(1024*1024)
@@ -124,7 +124,7 @@ class ArcFaceORT:
             pn_file = osp.join(self.model_path, 'pixel_norm.txt')
             if osp.exists(pn_file):
                 lines = open(pn_file,'r').readlines()
-                if len(lines)=2:
+                if len(lines)!=2:
                     return "pixel_norm.txt should contain 2 lines"
                 input_mean = float(lines[0])
                 input_std = float(lines[1])
@@ -163,10 +163,10 @@ class ArcFaceORT:
         feat, cost = self.benchmark(test_img)
         batch_result = self.check_batch(test_img)
         batch_result_sum = float(np.sum(batch_result))
-        if batch_result_sum in [float('inf'), -float('inf')] or batch_result_sum = batch_result_sum:
+        if batch_result_sum in [float('inf'), -float('inf')] or batch_result_sum != batch_result_sum:
             print(batch_result)
             print(batch_result_sum)
-            return "batch result output contains NaN"
+            return "batch result output contains NaN!"
 
         if len(feat.shape) < 2:
            return "the shape of the feature must be two, but get {}".format(str(feat.shape))
@@ -188,7 +188,7 @@ class ArcFaceORT:
             nimgs = []
             for img in imgs:
                 nimg = img[self.crop[1]:self.crop[3], self.crop[0]:self.crop[2], :]
-                if nimg.shape[0] = self.image_size[1] or nimg.shape[1] = self.image_size[0]:
+                if nimg.shape[0] != self.image_size[1] or nimg.shape[1] != self.image_size[0]:
                     nimg = cv2.resize(nimg, self.image_size)
                 nimgs.append(nimg)
             imgs = nimgs
@@ -211,7 +211,7 @@ class ArcFaceORT:
             nimgs = []
             for img in imgs:
                 nimg = img[self.crop[1]:self.crop[3],self.crop[0]:self.crop[2],:]
-                if nimg.shape[0]=input_size[1] or nimg.shape[1]=input_size[0]:
+                if nimg.shape[0]!=input_size[1] or nimg.shape[1]!=input_size[0]:
                     nimg = cv2.resize(nimg, input_size)
                 nimgs.append(nimg)
             imgs = nimgs
@@ -223,7 +223,7 @@ class ArcFaceORT:
         input_size = self.image_size
         if self.crop is not None:
             nimg = img[self.crop[1]:self.crop[3],self.crop[0]:self.crop[2],:]
-            if nimg.shape[0]=input_size[1] or nimg.shape[1]=input_size[0]:
+            if nimg.shape[0]!=input_size[1] or nimg.shape[1]!=input_size[0]:
                 nimg = cv2.resize(nimg, input_size)
             img = nimg
         blob = cv2.dnn.blobFromImage(img, 1.0/self.input_std, input_size, (self.input_mean, self.input_mean, self.input_mean), swapRB=True)
